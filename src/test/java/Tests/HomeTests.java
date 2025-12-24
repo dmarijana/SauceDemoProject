@@ -51,15 +51,19 @@ public class HomeTests extends TestBase {
         homePage.clickOnLowToHighOption();
         List<Double> actualPrices = new ArrayList<>();
 
+        //Pravimo for petlju u koju smestamo sortirane cene, uklanjamo $
         for(WebElement price : homePage.getInventoryItemPrices()) {
             actualPrices.add(Double.parseDouble(price.getText().replace("$", "")));
         }
-
+        //Pravimo novu listu, kopiju actual prices liste
         List<Double> expectedPrices = new ArrayList<>(actualPrices);
+
+        //Koristimo metodu sort da poredjamo cene po uzlaznoj putanji
         Collections.sort(expectedPrices);
         Assert.assertEquals(actualPrices, expectedPrices);
     }
 
+    //Isti prinicp kao metoda koja sortira po cenama, samo koristi imena proizvoda
     @Test(priority = 40)
     public void sortItemsByNameAToZ() {
         homePage.clickOnFilterButton();

@@ -26,6 +26,7 @@ public class CartPage extends TestBase {
     @FindBy(className = "inventory_item_price")
     WebElement itemPrice;
 
+    //Metoda koja vraca element po tekstu koji prosledimo
     public WebElement getElementInCart(String text) {
         for (WebElement item : cartItemList) {
             if (item.getText().contains(text)) {
@@ -35,6 +36,7 @@ public class CartPage extends TestBase {
         return null;
     }
 
+    //Metoda koja vraca ime proizvoda po elementu koji prosledimo
     public String getNameOfElement(WebElement element) {
         return element.getText();
     }
@@ -51,6 +53,7 @@ public class CartPage extends TestBase {
         continueShoppingButton.click();
     }
 
+    //Prikuplja cenu proizvoda u korpi, uklanja znak $
     public Double getItemPrice() {
         return Double.parseDouble(itemPrice.getText().replace("$", ""));
     }

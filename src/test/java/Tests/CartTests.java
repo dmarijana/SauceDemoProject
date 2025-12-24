@@ -3,6 +3,7 @@ package Tests;
 import Base.TestBase;
 import Pages.CartPage;
 import Pages.HomePage;
+import Pages.LoginPage;
 import Pages.ProductPage;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -47,6 +48,7 @@ public class CartTests extends TestBase {
         homePage.clickOnShoppingCart();
         WebElement cartItem = cartPage.getElementInCart(Backpack);
         cartPage.clickButtonOfElement(cartItem);
+        //Ocekujemo da element ne bude prisutan u korpi
         Assert.assertFalse(isElementPresent(cartItem));
     }
 

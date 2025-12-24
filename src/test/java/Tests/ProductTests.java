@@ -7,8 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static Base.ItemNames.Onesie;
-import static Base.ItemNames.Redtshirt;
+import static Base.ItemNames.*;
 
 public class ProductTests extends TestBase {
     HomePage homePage;
@@ -32,7 +31,7 @@ public class ProductTests extends TestBase {
 
     @Test(priority = 20)
     public void checkTitleOfProduct() {
-        homePage.findElementInList(Redtshirt).click();
-        Assert.assertEquals(productPage.getProductName().getText(), Redtshirt);
+        homePage.findElementInList(Redshirt).click();
+        Assert.assertEquals(productPage.getProductName().getText(), Redshirt);
     }
 }

@@ -16,7 +16,7 @@ public class LoginTests extends TestBase {
 
     @Test(priority = 10)
     public void userCantLoginWithInvalidUsername() {
-        loginPage.inputUsername("invalidUser");
+        loginPage.inputUsername("invalidUsername");
         loginPage.inputPassword("secret_sauce");
         loginPage.clickOnLoginButton();
         Assert.assertTrue(isElementPresent(loginPage.getErrorMessage()));

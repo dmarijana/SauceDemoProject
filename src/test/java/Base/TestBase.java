@@ -23,9 +23,9 @@ public class TestBase {
     public void setUp() {
         WebDriverManager.edgedriver().setup();
         driver = new EdgeDriver();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(5L));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15L));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         driver.get("https://saucedemo.com/");
         loginPage = new LoginPage();
         homePage = new HomePage();
@@ -38,19 +38,21 @@ public class TestBase {
         Assert.assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/inventory.html");
     }
 
+    public void addItemToCart(String itemName) {
+        homePage.clickButtonOfElementInList(itemName);
+    }
+
+    //Metoda koja proverava da li je element prisutan, kao argument prima web element
     public boolean isElementPresent(WebElement element) {
         boolean isPresent = false;
 
         try {
             isPresent = element.isDisplayed();
-        } catch (Exception var4) {
+        } catch (Exception e) {
+            System.out.println("Element is not present or visible");
         }
 
         return isPresent;
-    }
-
-    public void addItemToCart(String itemName) {
-        homePage.clickButtonOfElementInList(itemName);
     }
 
     @AfterMethod

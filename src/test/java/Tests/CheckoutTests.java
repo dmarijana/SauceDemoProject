@@ -27,13 +27,16 @@ public class CheckoutTests extends TestBase {
     public void verifyProductCanBeOrdered() {
         homePage.clickButtonOfElementInList(Onesie);
         homePage.clickOnShoppingCart();
+        //Prikupljamo cenu kako bismo je uporedili sa cenom na racunu
         Double priceInCart = cartPage.getItemPrice();
         cartPage.clickOnCheckoutButton();
         checkoutPage.inputFirstName("Marijana");
         checkoutPage.inputLastName("Dilparic");
         checkoutPage.inputPostalCode("34000");
         checkoutPage.clickOnContinueButton();
+        //Prikupljamo cenu na racunu da bismo je asertovali
         Double priceInCheckout = checkoutPage.getItemPrice();
+        //Assert cene iz cart-a i cene na zavrsnom racunu
         Assert.assertEquals(priceInCart, priceInCheckout);
         checkoutPage.clickOnFinishButton();
         Assert.assertTrue(isElementPresent(checkoutPage.getSuccessMessage()));
@@ -47,12 +50,15 @@ public class CheckoutTests extends TestBase {
         homePage.clickOnShoppingCart();
         cartPage.clickOnCheckoutButton();
         checkoutPage.clickOnContinueButton();
+        //Ocekujemo da error poruka bude prisutna jer nismo popunili nista
         Assert.assertTrue(isElementPresent(checkoutPage.getErrorMessage()));
         checkoutPage.inputFirstName("Marijana");
         checkoutPage.clickOnContinueButton();
+        //Ocekujemo da error poruka bude prisutna jer smo popunili samo ime
         Assert.assertTrue(isElementPresent(checkoutPage.getErrorMessage()));
         checkoutPage.inputLastName("Dilparic");
         checkoutPage.clickOnContinueButton();
+        //Ocekujemo da error poruka bude prisutna jer smo popunili samo ime i prezime
         Assert.assertTrue(isElementPresent(checkoutPage.getErrorMessage()));
         checkoutPage.inputPostalCode("34000");
         checkoutPage.clickOnContinueButton();

@@ -79,6 +79,20 @@ public class HomePage extends TestBase {
         return inventoryItemPrices;
     }
 
+    //Metoda koja klince na dugme elementa po nazivu elementa (moze biti add to cart ili remove)
+    public void clickButtonOfElementInList(String productName) {
+        for (WebElement item : inventoryItems) {
+
+            String name = item.findElement(By.className("inventory_item_name")).getText();
+
+            if (name.equals(productName)) {
+                item.findElement(By.tagName("button")).click();
+                break;
+            }
+        }
+    }
+
+    //Metoda koja vraca element (proizvod) u listi po tekstu
     public WebElement findElementInList(String text) {
         for (WebElement item : inventoryItems) {
             if (item.getText().contains(text)) {
@@ -86,18 +100,5 @@ public class HomePage extends TestBase {
             }
         }
         return null;
-    }
-
-    public void clickButtonOfElementInList(String productName) {
-        for (WebElement item : inventoryItems) {
-            String name = item
-                    .findElement(By.className("inventory_item_name"))
-                    .getText();
-
-            if (name.equals(productName)) {
-                item.findElement(By.tagName("button")).click();
-                break;
-            }
-        }
     }
 }
