@@ -7,15 +7,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class LoginTests extends TestBase {
-    LoginPage loginPage;
-
-    @BeforeMethod
-    public void pageSetUp() {
-        loginPage = new LoginPage();
-    }
 
     @Test(priority = 10)
     public void userCantLoginWithInvalidUsername() {
+        homePage.clickOnSideLogoutButton();
         loginPage.inputUsername("invalidUsername");
         loginPage.inputPassword("secret_sauce");
         loginPage.clickOnLoginButton();
@@ -24,6 +19,7 @@ public class LoginTests extends TestBase {
 
     @Test(priority = 20)
     public void userCantLoginWithInvalidPassword() {
+        homePage.clickOnSideLogoutButton();
         loginPage.inputUsername("standard_user");
         loginPage.inputPassword("invalidPassword");
         loginPage.clickOnLoginButton();

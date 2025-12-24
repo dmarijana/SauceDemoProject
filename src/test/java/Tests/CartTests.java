@@ -1,37 +1,28 @@
 package Tests;
 
 import Base.TestBase;
-import Pages.CartPage;
-import Pages.HomePage;
-import Pages.LoginPage;
-import Pages.ProductPage;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static Base.ItemNames.*;
 
 public class CartTests extends TestBase {
-    HomePage homePage;
-    CartPage cartPage;
-    ProductPage productPage;
 
-    @BeforeMethod
+    /*@BeforeMethod
     public void pageSetUp() {
-        homePage = new HomePage();
-        cartPage = new CartPage();
-        productPage = new ProductPage();
         validLogin();
-    }
+    }*/
 
     @Test(priority = 10)
     public void addOneItemAndCheckCart() {
         homePage.clickButtonOfElementInList(Onesie);
         homePage.clickOnShoppingCart();
+        //Promenljivoj cartItem dodeljujemo vrednost elementa iz korpe
         WebElement cartItem = cartPage.getElementInCart(Onesie);
-        String cartItemName = cartPage.getNameOfElement(cartItem);
-        Assert.assertTrue(cartItemName.contains(Onesie));
+        //izvlacimo tekst tog elementa i uporedjujemo
+        String cartItemText = cartPage.getTextOfElement(cartItem);
+        Assert.assertTrue(cartItemText.contains(Onesie));
     }
 
     @Test(priority = 20)
@@ -46,7 +37,9 @@ public class CartTests extends TestBase {
     public void checkIfElementIsRemovedFromCart() {
         homePage.clickButtonOfElementInList(Backpack);
         homePage.clickOnShoppingCart();
+        //Promenljivoj cartItem dodeljujemo vrednost elementa iz korpe
         WebElement cartItem = cartPage.getElementInCart(Backpack);
+        //Klikcemo na dugme tog elementa - Remove
         cartPage.clickButtonOfElement(cartItem);
         //Ocekujemo da element ne bude prisutan u korpi
         Assert.assertFalse(isElementPresent(cartItem));

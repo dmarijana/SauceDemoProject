@@ -11,17 +11,6 @@ import org.testng.annotations.Test;
 import static Base.ItemNames.Onesie;
 
 public class CheckoutTests extends TestBase {
-    HomePage homePage;
-    CartPage cartPage;
-    CheckoutPage checkoutPage;
-
-    @BeforeMethod
-    public void pageSetUp() {
-        homePage = new HomePage();
-        cartPage = new CartPage();
-        checkoutPage = new CheckoutPage();
-        validLogin();
-    }
 
     @Test(priority = 10)
     public void verifyProductCanBeOrdered() {

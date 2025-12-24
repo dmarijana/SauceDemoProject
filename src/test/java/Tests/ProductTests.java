@@ -10,15 +10,6 @@ import org.testng.annotations.Test;
 import static Base.ItemNames.*;
 
 public class ProductTests extends TestBase {
-    HomePage homePage;
-    ProductPage productPage;
-
-    @BeforeMethod
-    public void pageSetUp() {
-        homePage = new HomePage();
-        productPage = new ProductPage();
-        validLogin();
-    }
 
     @Test(priority = 10)
     public void verifyThatProductCanBeAddedAndRemoved() {

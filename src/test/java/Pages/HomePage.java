@@ -42,11 +42,6 @@ public class HomePage extends TestBase {
     @FindBy(className = "inventory_item_price")
     private List<WebElement> inventoryItemPrices;
 
-    public void clickOnSideLogoutButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(sideLogoutButton));
-        sideLogoutButton.click();
-    }
-
     public void clickOnMenuButton() {
         menuButton.click();
     }
@@ -79,8 +74,16 @@ public class HomePage extends TestBase {
         return inventoryItemPrices;
     }
 
-    //Metoda koja klince na dugme elementa po nazivu elementa (moze biti add to cart ili remove)
+    //Cekamo da logout button bude vidljiv kako bismo kliknuli na njega
+    public void clickOnSideLogoutButton() {
+        clickOnMenuButton();
+        wait.until(ExpectedConditions.elementToBeClickable(sideLogoutButton));
+        sideLogoutButton.click();
+    }
+
+    //Metoda koja klikce na dugme elementa po nazivu proizvoda (moze biti add to cart ili remove)
     public void clickButtonOfElementInList(String productName) {
+
         for (WebElement item : inventoryItems) {
 
             String name = item.findElement(By.className("inventory_item_name")).getText();
@@ -92,10 +95,13 @@ public class HomePage extends TestBase {
         }
     }
 
-    //Metoda koja vraca element (proizvod) u listi po tekstu
-    public WebElement findElementInList(String text) {
+    //Metoda koja vraca element (proizvod) u listi po nazivu proizvoda
+    public WebElement findElementInList(String productName) {
         for (WebElement item : inventoryItems) {
-            if (item.getText().contains(text)) {
+
+            String name = item.findElement(By.className("inventory_item_name")).getText();
+
+            if (name.equals(productName)) {
                 return item;
             }
         }

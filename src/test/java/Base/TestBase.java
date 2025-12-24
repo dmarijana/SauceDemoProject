@@ -1,7 +1,6 @@
 package Base;
 
-import Pages.HomePage;
-import Pages.LoginPage;
+import Pages.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,6 +17,9 @@ public class TestBase {
     public static WebDriverWait wait;
     public LoginPage loginPage;
     public HomePage homePage;
+    public CartPage cartPage;
+    public ProductPage productPage;
+    public CheckoutPage checkoutPage;
 
     @BeforeMethod
     public void setUp() {
@@ -26,12 +28,16 @@ public class TestBase {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-        driver.get("https://saucedemo.com/");
         loginPage = new LoginPage();
         homePage = new HomePage();
+        cartPage = new CartPage();
+        productPage = new ProductPage();
+        checkoutPage = new CheckoutPage();
+        validLogin();
     }
 
     public void validLogin() {
+        driver.get("https://saucedemo.com/");
         loginPage.inputUsername("standard_user");
         loginPage.inputPassword("secret_sauce");
         loginPage.clickOnLoginButton();

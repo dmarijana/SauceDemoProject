@@ -16,23 +16,9 @@ import java.util.List;
 import static Base.ItemNames.Jacket;
 
 public class HomeTests extends TestBase {
-    LoginPage loginPage;
-    LoginTests loginTests;
-    HomePage homePage;
-    CartPage cartPage;
-
-    @BeforeMethod
-    public void pageSetUp() {
-        loginPage = new LoginPage();
-        loginTests = new LoginTests();
-        homePage = new HomePage();
-        cartPage = new CartPage();
-        validLogin();
-    }
 
     @Test(priority = 10)
     public void verifyUserCanLogout() {
-        homePage.clickOnMenuButton();
         homePage.clickOnSideLogoutButton();
         Assert.assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/");
     }

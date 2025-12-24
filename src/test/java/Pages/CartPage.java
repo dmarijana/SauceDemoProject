@@ -26,6 +26,16 @@ public class CartPage extends TestBase {
     @FindBy(className = "inventory_item_price")
     WebElement itemPrice;
 
+    //Metoda koja vraca ime i opis proizvoda po elementu koji prosledimo
+    public String getTextOfElement(WebElement element) {
+        return element.getText();
+    }
+
+    //Metoda koja klikce na dugme elementa iz korpe
+    public void clickButtonOfElement(WebElement element) {
+        element.findElement(By.tagName("button")).click();
+    }
+
     //Metoda koja vraca element po tekstu koji prosledimo
     public WebElement getElementInCart(String text) {
         for (WebElement item : cartItemList) {
@@ -36,13 +46,9 @@ public class CartPage extends TestBase {
         return null;
     }
 
-    //Metoda koja vraca ime proizvoda po elementu koji prosledimo
-    public String getNameOfElement(WebElement element) {
-        return element.getText();
-    }
-
-    public void clickButtonOfElement(WebElement element) {
-        element.findElement(By.tagName("button")).click();
+    //Prikuplja cenu proizvoda u korpi
+    public String getItemPrice() {
+        return itemPrice.getText();
     }
 
     public void clickOnCheckoutButton() {
@@ -51,10 +57,5 @@ public class CartPage extends TestBase {
 
     public void clickOnContinueButton() {
         continueShoppingButton.click();
-    }
-
-    //Prikuplja cenu proizvoda u korpi
-    public String getItemPrice() {
-        return itemPrice.getText();
     }
 }
