@@ -14,8 +14,8 @@ import org.testng.annotations.BeforeMethod;
 import java.time.Duration;
 
 public class TestBase {
-    protected static WebDriver driver;
-    protected static WebDriverWait wait;
+    public static WebDriver driver;
+    public static WebDriverWait wait;
     public LoginPage loginPage;
     public HomePage homePage;
 
@@ -36,10 +36,6 @@ public class TestBase {
         loginPage.inputPassword("secret_sauce");
         loginPage.clickOnLoginButton();
         Assert.assertEquals(driver.getCurrentUrl(), "https://www.saucedemo.com/inventory.html");
-    }
-
-    public void addItemToCart(String itemName) {
-        homePage.clickButtonOfElementInList(itemName);
     }
 
     //Metoda koja proverava da li je element prisutan, kao argument prima web element

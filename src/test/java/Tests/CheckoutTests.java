@@ -28,14 +28,14 @@ public class CheckoutTests extends TestBase {
         homePage.clickButtonOfElementInList(Onesie);
         homePage.clickOnShoppingCart();
         //Prikupljamo cenu kako bismo je uporedili sa cenom na racunu
-        Double priceInCart = cartPage.getItemPrice();
+        String priceInCart = cartPage.getItemPrice();
         cartPage.clickOnCheckoutButton();
         checkoutPage.inputFirstName("Marijana");
         checkoutPage.inputLastName("Dilparic");
         checkoutPage.inputPostalCode("34000");
         checkoutPage.clickOnContinueButton();
         //Prikupljamo cenu na racunu da bismo je asertovali
-        Double priceInCheckout = checkoutPage.getItemPrice();
+        String priceInCheckout = checkoutPage.getItemPrice();
         //Assert cene iz cart-a i cene na zavrsnom racunu
         Assert.assertEquals(priceInCart, priceInCheckout);
         checkoutPage.clickOnFinishButton();

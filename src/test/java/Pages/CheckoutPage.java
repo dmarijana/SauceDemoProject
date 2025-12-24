@@ -61,9 +61,9 @@ public class CheckoutPage extends TestBase {
         continueButton.click();
     }
 
-    //Prikuplja cenu proizvoda u korpi, uklanja znak $
-    public Double getItemPrice() {
-        return Double.parseDouble(itemPrice.getText().replace("$", ""));
+    //Prikuplja cenu proizvoda u korpi
+    public String getItemPrice() {
+        return itemPrice.getText();
     }
 
     public void clickOnFinishButton() {

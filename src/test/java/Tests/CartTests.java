@@ -27,7 +27,7 @@ public class CartTests extends TestBase {
 
     @Test(priority = 10)
     public void addOneItemAndCheckCart() {
-        addItemToCart(Onesie);
+        homePage.clickButtonOfElementInList(Onesie);
         homePage.clickOnShoppingCart();
         WebElement cartItem = cartPage.getElementInCart(Onesie);
         String cartItemName = cartPage.getNameOfElement(cartItem);
@@ -36,15 +36,15 @@ public class CartTests extends TestBase {
 
     @Test(priority = 20)
     public void addMultipleItemsToCart() {
-        addItemToCart(Onesie);
-        addItemToCart(Backpack);
-        addItemToCart(BikeLight);
+        homePage.clickButtonOfElementInList(Onesie);
+        homePage.clickButtonOfElementInList(Backpack);
+        homePage.clickButtonOfElementInList(BikeLight);
         Assert.assertEquals(homePage.getShoppingCart().getText(), "3");
     }
 
     @Test(priority = 30)
     public void checkIfElementIsRemovedFromCart() {
-        addItemToCart(Backpack);
+        homePage.clickButtonOfElementInList(Backpack);
         homePage.clickOnShoppingCart();
         WebElement cartItem = cartPage.getElementInCart(Backpack);
         cartPage.clickButtonOfElement(cartItem);
@@ -54,11 +54,11 @@ public class CartTests extends TestBase {
 
     @Test(priority = 40)
     public void continueShoppingAfterCheckingCart() {
-        addItemToCart(Backpack);
+        homePage.clickButtonOfElementInList(Backpack);
         homePage.clickOnShoppingCart();
         cartPage.clickOnContinueButton();
         Assert.assertEquals(homePage.getShoppingCart().getText(), "1");
-        addItemToCart(Onesie);
+        homePage.clickButtonOfElementInList(Onesie);
         Assert.assertEquals(homePage.getShoppingCart().getText(), "2");
     }
 }
