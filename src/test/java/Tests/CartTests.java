@@ -20,7 +20,7 @@ public class CartTests extends TestBase {
         homePage.clickOnShoppingCart();
         //Promenljivoj cartItem dodeljujemo vrednost elementa iz korpe
         WebElement cartItem = cartPage.getElementInCart(Onesie);
-        //izvlacimo tekst tog elementa i uporedjujemo
+        //izvlacimo tekst tog elementa i uporedjujemo.
         String cartItemText = cartPage.getTextOfElement(cartItem);
         Assert.assertTrue(cartItemText.contains(Onesie));
     }
