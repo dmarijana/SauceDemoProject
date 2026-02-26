@@ -18,7 +18,7 @@ public class CartTests extends TestBase {
     public void addOneItemAndCheckCart() {
         homePage.clickButtonOfElementInList(Onesie);
         homePage.clickOnShoppingCart();
-        //Promenljivoj cartItem dodeljujemo vrednost elementa iz korpe
+        //Promenljivoj cartItem dodeljujemo vrednost elementa iz korpe...
         WebElement cartItem = cartPage.getElementInCart(Onesie);
         //izvlacimo tekst tog elementa i uporedjujemo.
         String cartItemText = cartPage.getTextOfElement(cartItem);
